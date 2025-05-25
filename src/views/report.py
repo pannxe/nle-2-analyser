@@ -67,7 +67,16 @@ def report(scores: dict[str, int]) -> ft.View:
 
     def copy_md(e: ft.ControlEvent) -> None:
         e.page.set_clipboard(md_text)
-
+        bs = ft.BottomSheet(
+            content=ft.TextField(
+                md_text,
+                multiline=True,
+                expand=True,
+            ),
+            enable_drag=True,
+            is_scroll_controlled=True
+        )
+        e.page.open(bs)
         success_sb = ft.SnackBar(
             content=ft.Text(
                 "ระวัง! หากใช้ iOS หรือ iPadOS อาจ copy ไม่สำเร็จ!")
@@ -93,7 +102,6 @@ def report(scores: dict[str, int]) -> ft.View:
                     block_spacing=16,
                 ),
                 expand=True,
-                selectable=True,
             ),
         ],
         floating_action_button=copy_to_clipboard_fab,
