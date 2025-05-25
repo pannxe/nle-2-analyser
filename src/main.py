@@ -12,7 +12,6 @@ def main(page: ft.Page) -> None:
         "nstl-bold": "/fonts/NotoSansThaiLooped-Bold.ttf",
     }
     page.theme = ft.Theme(font_family="nstl")
-    page.adaptive = False
 
     def route_change(_: ft.ControlEvent) -> None:
         if page.route == "/":
