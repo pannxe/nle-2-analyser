@@ -25,9 +25,9 @@ def data_input() -> ft.View:
 
     def gen_report(e: ft.ControlEvent) -> None:
         scores = {c.name: int(c.score) for c in score_inputs_content}
-        e.page.views.clear()
         e.page.views.append(report(scores))
-        e.page.go("/report")
+        e.page.route = "/report"
+        e.page.update()
 
     gen_report_btn = ft.FilledButton(
         "Analyse",

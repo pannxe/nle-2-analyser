@@ -26,7 +26,7 @@ env:
   BUILD_VERSION: 0.1.1
 
   # Python version to use
-  PYTHON_VERSION: 3.13
+  PYTHON_VERSION: 3.12.8
 
   # flet-cli version to install for `flet build`
   FLET_CLI_VERSION: 0.28.3
@@ -61,7 +61,7 @@ jobs:
     - name: Flet Build Web
       run: |
         echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}, USER: ${GITHUB_REPOSITORY%/*}, PROJECT_BASE_URL: ${GITHUB_REPOSITORY#*/}"
-        flet build web --base-url ${GITHUB_REPOSITORY#*/} --route-url-strategy hash --no-web-splash --web-renderer html
+        flet build web --base-url ${GITHUB_REPOSITORY#*/src/} --route-url-strategy hash --no-web-splash
 
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3
