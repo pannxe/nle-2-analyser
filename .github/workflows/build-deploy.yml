@@ -64,13 +64,14 @@ jobs:
       working-directory: ./src
       run: |
         echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}, USER: ${GITHUB_REPOSITORY%/*}, PROJECT_BASE_URL: ${GITHUB_REPOSITORY#*/}"
-        flet publish --base-url ${GITHUB_REPOSITORY#*/} --route-url-strategy hash
+        flet build web --base-url ${GITHUB_REPOSITORY#*/} --verbose --route-url-strategy hash --flutter-build-args=--release --flutter-build-args=--source-maps --flutter-build-args=--verbose
+        cp ~/flutter/3.29.2/bin/cache/flutter_web_sdk/flutter_js/flutter.js.map ./build/web/
 
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3
       with:
         name: web-build-artifact  # the name of the artifact
-        path: src/dist
+        path: src/build/web
 
   deploy:
     needs: build  # wait for the "build" job to get done before executing this "deploy" job
