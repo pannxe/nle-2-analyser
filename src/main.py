@@ -34,4 +34,5 @@ ft.app(
     assets_dir="assets",
     view=ft.AppView.WEB_BROWSER,
     route_url_strategy="hash",
+    web_renderer=ft.WebRenderer.HTML,
 )
