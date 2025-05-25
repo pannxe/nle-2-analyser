@@ -23,13 +23,7 @@ def main(page: ft.Page) -> None:
 
         page.update()
 
-    def view_pop(_: ft.ViewPopEvent) -> None:
-        page.views.pop()
-        if page.views:
-            page.go(page.views[-1].route)  # type: ignore noqa
-
     page.on_route_change = route_change
-    page.on_view_pop = view_pop
     page.go(page.route)
 
 
