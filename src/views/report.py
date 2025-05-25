@@ -1,4 +1,4 @@
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 import datetime
 
@@ -19,7 +19,7 @@ def report(scores: dict[str, int]) -> ft.View:
 
         "## Disclaimer\n\n"
         "รายงานต่อไปนี้ไม่ยืนยันความถูกต้อง หากพบโปรแกรมทำงานผิดพลาด สามารถเปิด issue บน "
-        "Github ได้ที่ [](https://www.github.com/pannxe)\n\n"
+        "Github ได้ที่ [https://github.com/pannxe/nle-2-analyser/issues](https://github.com/pannxe/nle-2-analyser/issues)\n\n"
 
         "## วิเคราะห์คะแนน\n\n"
     )
@@ -86,6 +86,7 @@ def report(scores: dict[str, int]) -> ft.View:
             ft.Markdown(
                 md_text,
                 extension_set=ft.MarkdownExtensionSet.GITHUB_WEB,
+                on_tap_link=lambda e: e.page.launch_url(e.data),
                 md_style_sheet=ft.MarkdownStyleSheet(
                     h1_text_style=ft.TextStyle(
                         24, font_family="nstl-bold"),

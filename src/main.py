@@ -1,4 +1,4 @@
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 import flet as ft
@@ -33,4 +33,4 @@ def main(page: ft.Page) -> None:
     page.go(page.route)
 
 
-ft.app(main, assets_dir="assets")
+ft.app(main, assets_dir="assets", view=ft.AppView.WEB_BROWSER)
