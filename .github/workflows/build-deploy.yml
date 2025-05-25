@@ -64,7 +64,7 @@ jobs:
       working-directory: ./src
       run: |
         echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}, USER: ${GITHUB_REPOSITORY%/*}, PROJECT_BASE_URL: ${GITHUB_REPOSITORY#*/}"
-        flet build web --base-url ${GITHUB_REPOSITORY#*/} --verbose --route-url-strategy hash --flutter-build-args=--release --flutter-build-args=--source-maps --flutter-build-args=--verbose
+        flet build web --base-url ${GITHUB_REPOSITORY#*/} --verbose --route-url-strategy hash 
         cp ~/flutter/3.29.2/bin/cache/flutter_web_sdk/flutter_js/flutter.js.map ./build/web/
 
     - name: Upload Artifact
