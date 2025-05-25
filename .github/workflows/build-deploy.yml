@@ -26,10 +26,10 @@ env:
   BUILD_VERSION: 0.1.1
 
   # Python version to use
-  PYTHON_VERSION: 3.12.8
+  PYTHON_VERSION: 3.13
 
   # flet-cli version to install for `flet build`
-  FLET_CLI_VERSION: 0.27.5
+  FLET_CLI_VERSION: 0.28.3
 
   # Ensures Python uses UTF-8 encoding by default
   PYTHONUTF8: 1
@@ -62,7 +62,8 @@ jobs:
       working-directory: ./src
       run: |
         echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}, USER: ${GITHUB_REPOSITORY%/*}, PROJECT_BASE_URL: ${GITHUB_REPOSITORY#*/}"
-        flet build web --base-url ${GITHUB_REPOSITORY#*/} --route-url-strategy hash
+        flutter config --no-analytics
+        flet build web --base-url ${GITHUB_REPOSITORY#*/} --route-url-strategy hash --flutter-build-args "--no-source-maps"
 
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3
