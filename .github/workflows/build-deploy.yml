@@ -54,6 +54,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: Setup Flutter ${{ env.FLUTTER_VERSION }}
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ env.FLUTTER_VERSION }}
 
     - name: Install flet-cli ${{ env.FLET_CLI_VERSION }}
       run: |
@@ -64,8 +69,10 @@ jobs:
       working-directory: ./src
       run: |
         echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}, USER: ${GITHUB_REPOSITORY%/*}, PROJECT_BASE_URL: ${GITHUB_REPOSITORY#*/}"
-        flet build web --base-url ${GITHUB_REPOSITORY#*/} --verbose --route-url-strategy hash 
-        cp ~/flutter/3.29.2/bin/cache/flutter_web_sdk/flutter_js/flutter.js.map ./build/web/
+        flutter config --no-analytics
+        flet build web --base-url ${GITHUB_REPOSITORY#*/} --route-url-strategy hash
+        # flet build web --base-url ${GITHUB_REPOSITORY#*/} --route-url-strategy hash --flutter-build-args=--release --flutter-build-args=--source-maps --flutter-build-args=--verbose --verbose
+        # cp ~/flutter/3.29.2/bin/cache/flutter_web_sdk/flutter_js/flutter.js.map ./build/web/
 
     - name: Upload Artifact
       uses: actions/upload-pages-artifact@v3
