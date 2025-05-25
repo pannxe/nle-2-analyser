@@ -26,4 +26,5 @@ def main(page: ft.Page) -> None:
     page.go(page.route)
 
 
-ft.app(main, assets_dir="assets", view=ft.AppView.WEB_BROWSER)
+ft.app(main, assets_dir="assets",
+       view=ft.AppView.WEB_BROWSER, route_url_strategy="hash")
